@@ -11,7 +11,6 @@
 ### Settings:
 1. Change in vars/dredge.yml `user_agent`;
 2. Set in vars/dredge.yml `resources`: example `resource: [tenders, plans, contracts]`. Allowed values (auctions, contracts, plans, tenders)
-3. Change in vars/dredge.yml `path_to_vagrant_directory`.
 
 ## Usage:
 From directory where placed Vagrant file run command in terminal:

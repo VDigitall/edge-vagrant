@@ -68,8 +68,8 @@
     become: yes
     become_user: "{{ user_name }}"
 
-  - name: Put dredge.cfg
-    template: src={{ buildout.buildout_cfg }} dest=/home/{{ user_name }}/{{buildout.buildout_path}}/dredge.cfg backup=yes
+  - name: Put edge.cfg
+    template: src={{ buildout.buildout_cfg }} dest=/home/{{ user_name }}/{{buildout.buildout_path}}/edge.cfg backup=yes
     no_log: false
     tags:
     - all
@@ -87,7 +87,7 @@
     become_user: "{{ user_name }}"
 
   - name: Run bootstrap
-    shell: python bootstrap.py -c dredge.cfg
+    shell: python bootstrap.py -c edge.cfg
       chdir=/home/{{ user_name }}/{{buildout.buildout_path}}
     when: buildout_exists.rc != 0
     tags:
@@ -96,7 +96,7 @@
     become_user: "{{ user_name }}"
 
   - name: Run Buildout
-    shell: bin/buildout -N -c dredge.cfg
+    shell: bin/buildout -N -c edge.cfg
       chdir=/home/{{ user_name }}/{{buildout.buildout_path}}
     register: result
     ignore_errors: True

@@ -22,28 +22,22 @@ packages:
    - policycoreutils-python-utils
    - nginx
 user_name: litepublic
-path_to_vagrant_directory: /data/vitall_digitall/vagrant_lite_public
 buildout:
    buildout_repository_path: https://github.com/openprocurement/openprocurement.buildout.git
    buildout_path: edge
    old_buildout_path: litepublic
    buildout_repository_version: openprocurement.edge.buildout
-   buildout_cfg: dredge.cfg
+   buildout_cfg: edge.cfg
 versions:
-   openprocurement_api: 2.3.29
-   openprocurement_openeu: 2.3.18
-   openprocurement_openua: 2.3.15
-   openprocurement_openuadefense: 2.3.15
    openprocurement_client: 2.0b3
 auth_ini: auth.ini
 ports:
     edge: 6545
-    dryrun: 6546
     nginx: 80
 couchdb_db: edge_db
 couchdb_host: 0.0.0.0
 couchdb_port: 5984
-logs_db: logs20_db
+logs_db: logs_db
 tenders_api_server: http://public.api-sandbox.openprocurement.org
 tenders_api_version: 2.3
 queue_size: 1001
