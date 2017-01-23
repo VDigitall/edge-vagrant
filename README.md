@@ -9,8 +9,8 @@
 * [Ansible](http://docs.ansible.com/ansible/intro.html).
 
 ### Settings:
-1. Change in vars/dredge.yml `user_agent`;
-2. Set in vars/dredge.yml `resources`: example `resource: [tenders, plans, contracts]`. Allowed values (auctions, contracts, plans, tenders)
+1. Change in vars/edge.yml `user_agent`;
+2. Set in vars/edge.yml `resources`: example `resource: [tenders, plans, contracts]`. Allowed values (auctions, contracts, plans, tenders)
 
 ## Usage:
 From directory where placed Vagrant file run command in terminal:
