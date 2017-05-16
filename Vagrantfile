@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "fedora/24-cloud-base"
+  config.vm.box = "fedora/25-cloud-base"
   config.vm.hostname = 'lite-public'
 
   config.vm.network "forwarded_port", guest: 80, host: 10001 # nginx ("/api/" [GET -> EDGE/Couchdb])

@@ -45,7 +45,7 @@ couchdb_db: public_sandbox_db
 couchdb_host: 0.0.0.0
 couchdb_port: 5984
 logs_db: logs_db
-netdata: netdata-1.5.1-1.fc24.x86_64.rpm
+netdata: netdata-1.6.1-1qg.fc23.x86_64.rpm
 filename_for_combine: sandbox_prozorro.gz_
 torrent_view_filenames:
   - { torrent_filename: 1.0.0dev5-2ef983ef6156a37de130fabba598557c.view.torrent, filename: 2ef983ef6156a37de130fabba598557c.view }

@@ -1,0 +1,124 @@
+[app]
+        name = edge_{{ item }}
+        metrics = edge_{{ item }}.*
+        private charts = no
+        gaps when not collected = no
+        memory mode = ram
+        history = 60000
+
+[queues_size]
+        name = Queues size
+        title = Queues size
+        family = Queues_size
+        context = edge_{{ item }}.queues_size
+        units = items
+        type = line
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;MAIN_QUEUE_SIZE;MAIN_QUEUE_SIZE main last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;RETRY_QUEUE_SIZE;RETRY_QUEUE_SIZE retry last 1 1
+
+[api_clients]
+        name = API clients
+        title = my chart title
+        family = API_clients
+        context = edge_{{ item }}.api_clients
+        units = counts
+        type = line
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;API_CLIENTS;API_CLIENTS total last 1 1
+        dimension = edge_{{ item }}.MESSAGE_ID;create_api_clients new last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;drop_client deleted last 1000 100
+
+[threads]
+        name = Threads
+        title = Threads
+        family = Threads
+        context = edge_{{ item }}.threads
+        units = threads
+        type = line
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;FILTER_THREADS;FILTER_THREADS filter last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;INPUT_THREADS;INPUT_THREADS input last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;MAIN_THREADS;MAIN_THREADS main last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;RETRY_THREADS;RETRY_THREADS retry last 1 1
+
+[problem_documents]
+        name = Documents
+        title = Documents
+        family = Documents
+        context = edge_{{ item }}.documents
+        units = docs
+        type = line
+        dimension = edge_{{ item }}.MESSAGE_ID;droped_documents droped last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;add_to_retry add_to_retry last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;not_actual_docs not_actual last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;not_found_docs not_found last 1000 100
+
+[exceptions]
+        name = Exceptions
+        title = Exceptions
+        family = Exceptions
+        context = edge_{{ item }}.exceptions
+        units = exceptions
+        type = line
+        dimension = edge_{{ item }}.MESSAGE_ID;exceptions exceptions last 1000 100
+
+[process_documents]
+        name = Documents processed
+        title = Documents processed
+        family = Processed_docs
+        context = edge_{{ item }}.process_documents
+        units = docs/10sec
+        type = line
+        dimension = edge_{{ item }}.MESSAGE_ID;save_documents saved last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;update_documents updated last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;skiped skiped last 1000 100
+        dimension = edge_{{ item }}.MESSAGE_ID;add_to_resource_items_queue add_to_queue last 1000 100
+
+[timeshift]
+        name = Documents timeshift
+        title = Documents timeshift
+        family = Documents_timeshift
+        context = edge_{{ item }}.timeshift
+        units = sec
+        type = line
+        dimension = edge_{{ item }}.openprocurement.edge.workers;DOCUMENT_TIMESHIFT;DOCUMENT_TIMESHIFT avg average 1 1
+
+[requests_duration]
+        name = Requests durations
+        title = Requests durations
+        family = Requests durations
+        context = edge_{{ item }}.requests_duration
+        units = ms
+        type = area
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;REQUESTS_AVG;REQUESTS_AVG avg. last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;REQUESTS_DEV;REQUESTS_DEV vag_+_stdev last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;REQUESTS_MAX_AVG;REQUESTS_MAX_AVG max last 1 1
+        dimension = edge_{{ item }}.openprocurement.edge.databridge;REQUESTS_MIN_AVG;REQUESTS_MIN_AVG min last 1 1
+
+[feeder_requests_duration]
+        name = Feeder requests durations
+        title = Feeder requests durations
+        family = Feeder_requests_durations
+        context = edge_{{ item }}.feeder_requests_durations
+        units = ms
+        type = area
+        dimension = edge_{{ item }}.openprocurement_client.sync;FEEDER_REQUEST_DURATION;FEEDER_REQUEST_DURATION min min 1 1
+        dimension = edge_{{ item }}.openprocurement_client.sync;FEEDER_REQUEST_DURATION;FEEDER_REQUEST_DURATION max max 1 1
+        dimension = edge_{{ item }}.openprocurement_client.sync;FEEDER_REQUEST_DURATION;FEEDER_REQUEST_DURATION avg average 1 1
+
+[feeder_requests_count]
+        name = Feeder requests count
+        title = Feeder requests count
+        famliy = Feeder_requests_count
+        context = edge_{{ item }}.feeder_requests_count
+        units = requests
+        type = line
+        dimension = edge_{{ item }}.openprocurement_client.sync;FEEDER_REQUEST_DURATION;FEEDER_REQUEST_DURATION requests events 10 1
+
+[feeder_response_len]
+        name = Feeder response length
+        title = Feeder response length
+        family = Feeder_response_length
+        context = edge_{{ item }}.feeder_response_length
+        units = items
+        type = line
+        dimension = edge_{{ item }}.openprocurement_client.sync;FORWARD_RESPONSE_LENGTH;FORWARD_RESPONSE_LENGTH forward last 1000 100
+        dimension = edge_{{ item }}.openprocurement_client.sync;BACKWARD_RESPONSE_LENGTH;BACKWARD_RESPONSE_LENGTH backward last 1000 100
